@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Books</title>
+  <link rel="stylesheet" href="/style/style.css">
+  <style>
+  </style>
+</head>
+<body>
+
+  <h1>📚 My Books</h1>
+
+  <% if (book.length > 0) { %>
+    <div class="book-list">
+      <% book.forEach(b => { %>
+        <div class="book-card">
+
+          <% if (b.isbn) { %>
+            <img src="https://covers.openlibrary.org/b/isbn/<%= b.isbn %>-M.jpg" alt="<%= b.title %>">
+          <% } else if (b.cover_id) { %>
+            <img src="https://covers.openlibrary.org/b/id/<%= b.cover_id %>-M.jpg" alt="<%= b.title %>">
+          <% } else { %>
+            <p><em>No cover available</em></p>
+          <% } %>
+
+          <h2><%= b.title %></h2>
+          <p><strong>Author:</strong> <%= b.author %></p>
+
+          <% if (b.rating) { %>
+            <p class="rating">
+              <%= '★'.repeat(b.rating) %><%= '☆'.repeat(5 - b.rating) %>
+            </p>
+          <% } %>
+
+          <p><strong>Date Read:</strong> 
+            <%= b.date_read ? new Date(b.date_read).toISOString().split('T')[0] : 'Not set' %>
+          </p>
+          <p><strong>Notes:</strong> <%= b.notes || '—' %></p>
+
+          <div class="btn-group">
+            <a href="/edit/<%= b.id %>" class="btn btn-edit">✏️ Edit</a>
+            <form action="/delete" method="post" style="margin:0; flex:1;">
+              <input type="hidden" name="delete" value="<%= b.id %>">
+              <button type="submit" class="btn btn-delete">🗑 Delete</button>
+            </form>
+          </div>
+
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p class="empty">No books found yet. Add one to get started!</p>
+  <% } %>
+
+  <a href="/new" class="add-btn">+ Add a New Book</a>
+</body>
+</html>

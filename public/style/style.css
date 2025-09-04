@@ -1,272 +1,13 @@
-/* General layout
+/* General Page Styles */
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+  font-family: "Josefin Sans", Arial, sans-serif;
+  background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-h1 {
-  text-align: center;
-  margin: 1.5rem 0;
-  color: #037bff;
-}
-
-/* --- Book List Page --- *
-.book-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  width: 90%;
-  max-width: 1000px;
-  margin-bottom: 2rem;
-}
-
-.book-card {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.book-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.book-card img {
-  width: 120px;
-  height: auto;
-  margin-bottom: 1rem;
-  border-radius: 6px;
-}
-
-.book-card h2 {
-  font-size: 18px;
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
-.book-card p {
-  font-size: 14px;
-  margin: 0.3rem 0;
-}
-
-.rating {
-  color: #f5b50a;
-  font-size: 16px;
-  margin: 0.5rem 0;
-}
-
-/* Empty state *
-.empty {
-  text-align: center;
-  color: #888;
-  font-style: italic;
-}
-
-/* --- Buttons --- *
-.btn-group {
-  display: flex;
-  gap: 10px;
-  margin-top: 1rem;
-  width: 100%;
-}
-
-.btn {
-  padding: 10px;
-  background: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  flex: 1;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.btn:hover {
-  background: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.btn-edit {
-  background: #28a745;
-}
-
-.btn-edit:hover {
-  background: #218838;
-}
-
-.btn-delete {
-  background: #dc3545;
-}
-
-.btn-delete:hover {
-  background: #b02a37;
-}
-
-.add-btn {
-  display: inline-block;
-  padding: 12px 18px;
-  background: #037bff;
-  color: #fff;
-  border-radius: 10px;
-  font-size: 16px;
-  text-decoration: none;
-  margin: 1rem auto;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.add-btn:hover {
-  background: #0056b3;
-  transform: scale(1.05);
-}
-
-/* --- Forms (Add & Update) --- *
-.cool {
-  background: #fff;
-  width: 100%;
-  max-width: 450px;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  margin: 2rem auto;
-}
-
-.h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #037bff;
-}
-
-.create {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.cool input,
-.cool textarea {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 0.5rem;
-}
-
-.cool input:focus,
-.cool textarea:focus {
-  border-color: #007BFF;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-textarea {
-  resize: vertical;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-btn-group {
-  display: flex;
-  gap: 10px;
-  margin-top: 1rem;
-  width: 100%;
-}
-
-.btn {
-  padding: 10px;
-  background: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  flex: 1;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.btn:hover {
-  background: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.btn-edit {
-  background: #28a745;
-}
-
-.btn-edit:hover {
-  background: #218838;
-}
-
-.btn-delete {
-  background: #dc3545;
-}
-
-.btn-delete:hover {
-  background: #b02a37;
-}
-
-.add-btn {
-  display: inline-block;
-  padding: 12px 18px;
-  background: #037bff;
-  color: #fff;
-  border-radius: 10px;
-  font-size: 16px;
-  text-decoration: none;
-  margin: 1rem auto;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.add-btn:hover {
-  background: #0056b3;
-  transform: scale(1.05);
-}
-
-
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
   margin: 0;
-  padding: 2rem;
+  padding: 2rem 1rem;
   color: #333;
 }
 
@@ -275,42 +16,41 @@ h1 {
   margin-bottom: 2rem;
   color: #037bff;
   font-size: 2.5rem;
+  font-weight: 700;
 }
 
-/* * Button Styles 
- * These are used for all buttons and links that look like buttons.
- */
+/* Buttons */
 .btn {
-  padding: 10px 15px;
+  padding: 10px 16px;
   background: #007bff;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   text-decoration: none;
   text-align: center;
   display: inline-block;
-  white-space: nowrap;
 }
 
 .btn:hover {
   background: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 .btn-group {
   display: flex;
   gap: 10px;
-  margin-top: auto; /* Pushes the buttons to the bottom of the card */
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: auto;
 }
 
 .btn-edit {
   background-color: #28a745;
 }
-
 .btn-edit:hover {
   background-color: #218838;
 }
@@ -318,28 +58,36 @@ h1 {
 .btn-delete {
   background-color: #dc3545;
 }
-
 .btn-delete:hover {
   background-color: #c82333;
 }
 
 .add-btn {
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  margin-top: 2rem;
+  display: inline-block;
+  padding: 14px 24px;
+  background: #037bff;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  margin: 2rem auto;
+  transition: all 0.3s ease;
+}
+.add-btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
 }
 
-/* * Form Container & Element Styles 
- * Styles for the "Add" and "Update" book forms.
- */
+/* Form Container */
 .container,
 .cool {
   background: #fff;
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  max-width: 450px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
   width: 100%;
+  margin: 1rem auto;
   box-sizing: border-box;
 }
 
@@ -352,64 +100,66 @@ h1 {
 .cool input,
 .cool textarea {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .cool input:focus,
 .cool textarea:focus {
   border-color: #007bff;
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
 
 .cool textarea {
   resize: vertical;
 }
 
-/* * Book List Styles 
- * These apply specifically to the home page showing the list of books.
- */
+/* Book List Grid */
 .book-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
 .book-card {
   background: #fff;
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .book-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .book-card img {
   max-width: 150px;
   height: auto;
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.book-card img:hover {
+  transform: scale(1.05);
 }
 
 .book-card h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #007bff;
   margin: 0.5rem 0;
 }
@@ -418,7 +168,7 @@ h1 {
   margin: 0.5rem 0;
   font-size: 0.95rem;
   line-height: 1.4;
-  flex-grow: 1; /* Allows the content to expand and pushes buttons down */
+  flex-grow: 1;
 }
 
 .rating {
@@ -431,5 +181,45 @@ h1 {
   text-align: center;
   font-size: 1.2rem;
   color: #777;
-  margin-top: 5rem;
+  margin-top: 4rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .container,
+  .cool {
+    padding: 1.5rem;
+  }
+
+  .add-btn {
+    font-size: 1rem;
+    padding: 12px 18px;
+  }
+
+  .book-list {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .book-card {
+    padding: 1rem;
+  }
+
+  .book-card img {
+    max-width: 120px;
+  }
 }

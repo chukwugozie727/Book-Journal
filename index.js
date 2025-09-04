@@ -4,20 +4,20 @@ import bodyParser from "body-parser";
 import axios from "axios";
 import dotenv from "dotenv";
 
-
-const app = express();
-const port = 4000;
 dotenv.config();
 
+const app = express();
+const port = process.env.PORT || 4000; // Render sets PORT automatically
+
+// ✅ Database connection (works locally & on Render)
 const db = new pg.Client({
-  user: process.env.PG_USER,
-  host: process.env.PG_HSOT,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: process.env.PG_PORT,
+  connectionString:
+    process.env.DATABASE_URL ||
+    `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`,
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
 });
 
-db.connect();
+await db.connect();
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -25,7 +25,8 @@ app.set("views", "./views");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Home route - list books
+
+// Home - list all books
 app.get("/", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM books ORDER BY id ASC");
@@ -36,31 +37,28 @@ app.get("/", async (req, res) => {
   }
 });
 
-// Show form
+// Show add form
 app.get("/new", (req, res) => {
   res.render("new.ejs");
 });
 
-// Create a new book (insert into DB)
+// Create a new book
 app.post("/create", async (req, res) => {
   const { title, author, isbn, rating, date_read, notes } = req.body;
 
   try {
-    // 1. Call OpenLibrary API
     const response = await axios.get(
       `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`
     );
     const results = response.data.docs;
-    console.log(results)
 
     if (!results || results.length === 0) {
       return res.render("new.ejs", { error: "No book found from OpenLibrary." });
     }
 
-    // 2. Take the first result
-    const book = results[0];
+    const book = results[0]; // first result from API
 
-    // 3. Normalize for comparison
+    // Normalize
     const apiTitle = (book.title || "").toLowerCase();
     const apiAuthor = (book.author_name?.[0] || "").toLowerCase();
     const apiIsbn = (book.isbn?.[0] || "").toLowerCase();
@@ -74,7 +72,7 @@ app.post("/create", async (req, res) => {
       apiAuthor === userAuthor &&
       apiIsbn === userIsbn;
 
-    // 4. If no exact match, we auto-fill from API
+    // Auto-fill if no exact match
     const finalTitle = isExactMatch ? title : book.title || title;
     const finalAuthor = isExactMatch
       ? author
@@ -86,16 +84,13 @@ app.post("/create", async (req, res) => {
       : book.isbn
       ? book.isbn[0]
       : isbn;
-    const coverId = book.cover_i || null;
 
-    // 5. Save into DB
     await db.query(
       `INSERT INTO books (title, author, rating, date_read, notes, isbn) 
        VALUES ($1, $2, $3, $4, $5, $6)`,
       [finalTitle, finalAuthor, rating, date_read, notes, finalIsbn]
     );
 
-    // 6. Redirect to homepage
     res.redirect("/");
   } catch (error) {
     console.error("Error creating book:", error.message);
@@ -103,7 +98,6 @@ app.post("/create", async (req, res) => {
   }
 });
 
-   
 // Edit book form
 app.get("/edit/:id", async (req, res) => {
   const id = req.params.id;
@@ -125,7 +119,9 @@ app.post("/update", async (req, res) => {
   const { id, title, author, rating, date_read, notes, isbn } = req.body;
   try {
     await db.query(
-      `UPDATE books SET title=$1, author=$2, rating=$3, date_read=$4, notes=$5, isbn=$6 WHERE id=$7`,
+      `UPDATE books 
+       SET title=$1, author=$2, rating=$3, date_read=$4, notes=$5, isbn=$6 
+       WHERE id=$7`,
       [title, author, rating, date_read, notes, isbn, id]
     );
     res.redirect("/");
@@ -147,6 +143,7 @@ app.post("/delete", async (req, res) => {
   }
 });
 
+
 app.listen(port, () => {
-  console.log(`Server running on port: ${port}`);
+  console.log(`✅ Server running on port: ${port}`);
 });

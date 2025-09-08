@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Journal</title>
+  <link rel="stylesheet" href="/style/index.css">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">📖 Book Journal</div>
+    <ul id="navLinks">
+      <li><a href="#">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+
+    <div class="user-info">
+      <% if (user) { %>
+        <% if (user.photo) { %>
+          <a href="/dashboard"><img src="<%= user.photo %>" alt="Profile"></a>
+        <% } else { %>
+          <a href="/dashboard"><div class="avatar"><%= user.username.charAt(0).toUpperCase() %></div></a>
+        <% } %>
+        <a href="/dashboard"><div class="username"><%= user.username %></div></a>
+      <% } else { %>
+        <a href="/signup" class="btn signup">Sign Up</a>
+        <a href="/login" class="btn login">Login</a>
+      <% } %>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+  </script>
+</body>
+</html>

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | Book Journal</title>
-  
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style/dashboard.css">
@@ -24,14 +23,14 @@
     <div class="dashboard-header">
       <h1>Welcome, <%= user.username %> 👋</h1>
       <div class="profile" onclick="toggleDropdown()">
-        <% if (user) { %>
-          <% if (user.photo) { %>
-            <a href="/dashboard"><img src="<%= user.photo %>" alt="Profile"></a>
-          <% } else { %>
-            <div class="avatar"><%= user.username.charAt(0).toUpperCase() %></div>
-          <% } %>
-          <div class="username"><%= user.username %></div>
+                <% if (user) { %>
+        <% if (user.photo) { %>
+          <a href="/dashboard"><img src="<%= user.photo %>" alt="Profile"></a>
+        <% } else { %>
+        <a href="/dashboard"><div class="avatar"><%= user.username.charAt(0).toUpperCase() %></div></a>
         <% } %>
+        <a href="/dashboard"><div class="username"><%= user.username %></div></a>
+      <% } %>
         <div class="dropdown">
           <a href="/my-books">My Books</a>
           <a href="/settings">Settings</a>
@@ -56,30 +55,14 @@
       </div>
     </div>
 
-    <!-- Book List -->
-    <div class="book-list">
-      <h2>📚 My Books</h2>
-      <div class="books-grid">
-        <% books.forEach(book => { %>
-          <div class="book-card">
-            <% if (book.isbn) { %>
-              <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="<%= book.title %>">
-            <% } else { %>
-              <img src="https://via.placeholder.com/120x170.png?text=No+Cover" alt="No Cover">
-            <% } %>
-            <span class="book-title"><%= book.title %></span>
-            <div class="book-actions">
-              <a href="/edit/<%= book.id %>"><button class="btn btn-edit">Edit</button></a>
-              <form action="/delete" method="post">
-                <input type="hidden" name="id" value="<%= book.id %>">
-                <button class="btn btn-delete">Delete</button>
-              </form>
-            </div>
-          </div>
-        <% }) %>
-      </div>
-      <a href="/dashboard" class="back-link">⬅ Go Back</a>
+    <!-- Links -->
+    <div class="link-group">
+      <a href="/add-book">➕ Add a New Book</a>
+      <a href="/my-books">📚 View My Books</a>
     </div>
+
+    <br>
+    <a href="/" style="display:inline-block; margin-top:20px; background:#fff; color:var(--primary); padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">⬅ Go Back</a>
   </div>
 
   <script>
@@ -89,3 +72,11 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+

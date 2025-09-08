@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Journal</title>
+<style>
+/* Custom Properties for a Clean, Blue Aesthetic */
+:root {
+  --primary-color: #3b82f6; /* A clean blue for accents and buttons */
+  --primary-hover: #2563eb; /* A darker blue for hover states */
+  --secondary-color: #dbeafe; /* A soft, light blue for backgrounds */
+  --background-light: #f8fafc; /* The main page background */
+  --text-dark: #1f2937; /* A dark gray for headings and main text */
+  --text-light: #6b7280; /* A lighter gray for secondary text */
+  --box-shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
+  --box-shadow-lift: 0 8px 25px rgba(0,0,0,0.1);
+  --transition-fast: all 0.2s ease-in-out;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--secondary-color);
+  color: var(--text-dark);
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: none;
+  color: var(--primary-hover);
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: var(--text-light);
+}
+.hero a {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: var(--transition-fast);
+  border: 2px solid transparent;
+}
+.hero a:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* White Card Section */
+.card {
+  max-width: 750px;
+  margin: -40px auto 40px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow-lift);
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+.card h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+.card p {
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+.feature {
+  flex: 1;
+  min-width: 220px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: var(--box-shadow-soft);
+  text-align: center;
+  transition: var(--transition-fast);
+}
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-lift);
+}
+.feature h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+.feature p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+.emoji {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* All Books Section */
+.view-all-books {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+.search-form {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.search-form input {
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  width: 60%;
+  max-width: 350px;
+  margin-right: 10px;
+  transition: all 0.2s ease-in-out;
+}
+.search-form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+.search-form button {
+  padding: 10px 18px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.search-form button:hover {
+  background: var(--primary-hover);
+}
+.sub-text {
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+.view-all-books h1 {
+  color: var(--primary-color);
+  text-align: center;
+}
+
+/* Books Grid */
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+.book-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: var(--box-shadow-soft);
+  transition: var(--transition-fast);
+  border: 1px solid #e5e7eb;
+}
+.book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--box-shadow-lift);
+}
+.book-card img, .no-cover {
+  width: 100%;
+  max-width: 160px;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  background: #f3f4f6;
+  display: inline-block;
+  border: 1px solid #e5e7eb;
+}
+.no-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+.book-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+}
+.book-card p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.4;
+}
+.book-card .rating {
+  margin: 8px 0;
+  color: #f7b000;
+}
+
+/* View More Button */
+.btn-view {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 15px;
+}
+.btn-view:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+/* Add Button */
+.add-btn {
+  display: block;
+  margin: 40px auto 0;
+  text-align: center;
+  background: var(--primary-color);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  width: fit-content;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.add-btn:hover { background: var(--primary-hover); }
+
+/* Utility Classes */
+.error { color: #dc2626; text-align: center; margin-bottom: 15px; }
+.empty { text-align: center; color: var(--text-light); }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <%- include("partials/header.ejs") %>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Book Journal</h1>
+    <p>Capture your reading journey, reflect deeply, and grow with every page you turn.</p>
+    <% if (!user) { %>
+     <a href="/signup">Get Started</a>
+    <% } else {%>
+    <a href="/dashboard">Get Started</a>
+    <% } %>
+  </section>
+
+  <!-- White Card Section -->
+  <section class="card">
+    <h2>Your Personal Reading Companion</h2>
+    <p>
+      Book Journal is more than just a notebook — it’s your digital space to log every book you read,
+      record your insights, and revisit your favorite quotes and moments.  
+      Whether you’re a student, a passionate reader, or just beginning your book journey,
+      Book Journal keeps your thoughts organized and accessible anytime, anywhere.
+    </p>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="feature">
+      <div class="emoji">📚</div>
+      <h3>Track Your Books</h3>
+      <p>Easily add books, mark them as read, and build your personal digital library.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">📝</div>
+      <h3>Write Notes & Reviews</h3>
+      <p>Record your thoughts, favorite quotes, and ratings for every book you finish.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">✨</div>
+      <h3>Discover Patterns</h3>
+      <p>Reflect on your reading habits and see how your taste evolves over time.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">☁️</div>
+      <h3>Access Anywhere</h3>
+      <p>Your journal lives in the cloud — always available, safe, and organized.</p>
+    </div>
+  </section>
+
+  <!-- All Books Section -->
+  <section class="view-all-books">
+    <form action="/search" method="post" class="search-form">
+      <input type="text" name="title" placeholder="Search books by title">
+      <button type="submit">Search</button>
+    </form>
+
+    <p class="sub-text">These are people’s books — sign up and save yours today!</p>
+    <h1>📚 My Books</h1>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <% if (book.length > 0) { %>
+      <div class="book-list">
+        <% book.forEach(b => { %>
+          <div class="book-card">
+            <% if (b.isbn) { %>
+              <img src="https://covers.openlibrary.org/b/isbn/<%= b.isbn %>-M.jpg" alt="<%= b.title %>">
+            <% } else if (b.cover_id) { %>
+              <img src="https://covers.openlibrary.org/b/id/<%= b.cover_id %>-M.jpg" alt="<%= b.title %>">
+            <% } else { %>
+              <div class="no-cover">No cover</div>
+            <% } %>
+
+            <h2><%= b.title %></h2>
+            <p><strong>Author:</strong> <%= b.author %></p>
+
+            <% if (b.rating) { %>
+              <p class="rating"><%= '★'.repeat(b.rating) %><%= '☆'.repeat(5 - b.rating) %></p>
+            <% } %>
+
+            <p><strong>Date Read:</strong> 
+              <%= b.date_read ? new Date(b.date_read).toISOString().split('T')[0] : 'Not set' %>
+            </p>
+
+            <p><strong>Notes:</strong> <%= b.notes || '—' %></p>
+
+            <p>uploaded by: <%= b.uploader_name %></p>
+
+            <!-- Only View More button -->
+            <a href="/book/<%= b.id %>" class="btn-view">View More</a>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="empty">No books found yet. Add one to get started!</p>
+    <% } %>
+
+    <% if (user) { %>
+      <a href="/add-book" class="add-btn">+ Add a New Book</a>
+    <% } %>
+  </section>
+</body>
+</html>

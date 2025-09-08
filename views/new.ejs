@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/style/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Book</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<div class="cool">
+  <div class="cool">
     <h1 class="h1">Add a New Book</h1>
- <% if (typeof error !== 'undefined' && error) { %>
-  <p style="color: #ff4d4d; text-align: center; margin-bottom: 15px;">
-    <%= error %>
-  </p>
-<% } %>
-<form action="/create" method="POST" class="create">
-  <input type="text" name="title" placeholder="Book Title" required>
-  
-  <input type="text" name="author" placeholder="Author" required>
-  
-  <input type="number" name="rating" min="1" max="5" placeholder="Rating (1-5)" required>
-  
-  <input type="date" name="date_read" required>
-
-   <input type="text" name="isbn" placeholder="ISBN (e.g., 9780140328721), Not all book has isbn">
-  
-  <textarea name="notes" placeholder="Your notes about this book" rows="4"></textarea>
-
-  
-  <button type="submit" class="btn" >Add Book</button>
-</form>
-</div>
+    <% if (typeof error !== 'undefined' && error) { %>
+      <p style="color: var(--danger); text-align: center; margin-bottom: 15px;">
+        <%= error %>
+      </p>
+    <% } %>
+    <form action="/create" method="POST" class="create">
+      <input type="text" name="title" placeholder="Book Title" required>
+      <input type="text" name="author" placeholder="Author" required>
+      <input type="number" name="rating" min="1" max="5" placeholder="Rating (1-5)" required>
+      <input type="date" name="date_read" required>
+      <input type="text" name="isbn" placeholder="ISBN (e.g., 9780140328721)">
+      <textarea name="notes" placeholder="Your notes about this book" rows="4"></textarea>
+      <button type="submit" class="btn">Add Book</button>
+    </form>
+  </div>
 </body>
 </html>

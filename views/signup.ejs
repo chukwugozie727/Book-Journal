@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style/style.css">
+
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      /* ==== Root Colors ==== */
+:root {
+  --primary: #3b82f6;   /* bright blue */
+  --secondary: #2563eb; /* deep blue */
+  --danger: #ef4444;
+  --bg-light: #f9fafb;
+  --text-dark: #111827;
+  --text-light: #6b7280;
+  --white: #ffffff;
+  --radius: 12px;
+}
+
+/* ==== Reset ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ==== Body ==== */
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+  padding: 20px;
+  transition: background 1s ease-in-out;
+}
+
+/* ==== Form Container ==== */
+.form-container {
+  background: var(--white);
+  padding: 40px 30px;
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ==== Heading ==== */
+.form-container h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+/* ==== Input Groups ==== */
+.input-group {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: var(--text-dark);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+  background: var(--bg-light);
+}
+
+.input-group input:focus {
+  border-color: var(--primary);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* ==== Error messages ==== */
+.error-msg {
+  color: var(--danger);
+  font-size: 0.8rem;
+  margin-top: 5px;
+  display: none;
+}
+
+/* Invalid input border */
+input.invalid {
+  border-color: var(--danger);
+}
+
+/* ==== Password Toggle ==== */
+#togglePassword {
+  position: absolute;
+  top: 38px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: var(--text-light);
+  transition: 0.3s;
+}
+
+#togglePassword:hover {
+  color: var(--primary);
+}
+
+/* ==== Button ==== */
+.btn {
+  width: 100%;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: var(--white);
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+}
+
+/* ==== Separator ==== */
+.or-separator {
+  text-align: center;
+  color: var(--text-light);
+  margin: 20px 0;
+  position: relative;
+}
+
+.or-separator::before,
+.or-separator::after {
+  content: "";
+  height: 1px;
+  background: #e5e7eb;
+  width: 40%;
+  position: absolute;
+  top: 50%;
+}
+
+.or-separator::before {
+  left: 0;
+}
+.or-separator::after {
+  right: 0;
+}
+
+/* ==== Social Buttons ==== */
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid #e5e7eb;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.3s;
+  background: var(--white);
+}
+
+.social-btn i {
+  font-size: 1.2rem;
+}
+
+.google-btn {
+  color: #db4437;
+}
+
+.github-btn {
+  color: #24292e;
+}
+
+.social-btn:hover {
+  background: var(--bg-light);
+  transform: translateY(-1px);
+}
+
+/* ==== Register Link ==== */
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.register-link a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.register-link a:hover {
+  color: var(--secondary);
+}
+
+/* ==== Animation ==== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 25px 20px;
+  }
+
+  .form-container h1 {
+    font-size: 1.5rem;
+  }
+}
+
+    </style>
+</head>
+</body>
+    <!-- Signup Form -->
+  <div class="form-container">
+    <form id="signupForm" action="/signup" method="post" novalidate>
+      <h1>Sign Up Today</h1>
+
+      <% if (typeof error !== 'undefined' && error) { %>
+        <p style="color: #ef4444; text-align: center; margin-bottom: 15px;"><%= error %></p>
+      <% } %>
+
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Choose a username" required>
+        <p class="error-msg">Username is required</p>
+      </div>
+
+      <div class="input-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+        <p class="error-msg">Full name is required</p>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <p class="error-msg">Enter a valid email address</p>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" required minlength="6">
+        <i class='bx bx-hide' id="togglePassword"></i>
+        <p class="error-msg">Password must be at least 6 characters</p>
+      </div>
+
+      <button type="submit" class="btn" id="signupBtn">Sign Up</button>
+
+      <div class="or-separator">or</div>
+
+      <div class="social-login">
+        <button type="button" class="social-btn google-btn" data-auth-provider="/auth/google">
+          <i class='bx bxl-google'></i> Sign up with Google
+        </button>
+      </div>
+
+      <div class="register-link">
+        <p>Already have an account? <a href="/login">Login</a></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+   
+    // Validation
+    const signupForm = document.getElementById('signupForm');
+    const signupBtn = document.getElementById('signupBtn');
+    const requiredInputs = signupForm.querySelectorAll('input[required]');
+    requiredInputs.forEach(input => {
+      input.addEventListener('input', () => validateInput(input));
+      input.addEventListener('blur', () => validateInput(input));
+    });
+    function validateInput(input) {
+      const errorMsg = input.nextElementSibling;
+      if (input.checkValidity()) {
+        errorMsg.style.display = 'none';
+        input.classList.remove('invalid');
+      } else {
+        errorMsg.style.display = 'block';
+        input.classList.add('invalid');
+      }
+    }
+    signupForm.addEventListener('submit', function(e) {
+      let formIsValid = true;
+      requiredInputs.forEach(input => {
+        if (!input.checkValidity()) {
+          validateInput(input);
+          formIsValid = false;
+        }
+      });
+      if (!formIsValid) {
+        e.preventDefault();
+      } else {
+        signupBtn.textContent = 'Signing up...';
+        signupBtn.disabled = true;
+      }
+    });
+    // Social login redirect
+    document.querySelectorAll('.social-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const url = this.getAttribute('data-auth-provider');
+        if (url) window.location.href = url;
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

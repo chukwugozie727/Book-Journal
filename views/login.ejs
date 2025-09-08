@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #e0f2fe, #ffffff);
+      color: #111827;
+      padding: 20px; /* prevents edge sticking on small screens */
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 420px;
+      padding: 30px;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e5e7eb;
+      transition: transform 0.3s;
+    }
+    .wrapper:hover {
+      transform: translateY(-4px);
+    }
+
+    .wrapper h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e40af;
+    }
+
+    .input-box {
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 14px 45px 14px 15px;
+      border-radius: 12px;
+      border: 1px solid #d1d5db;
+      outline: none;
+      font-size: 1rem;
+      background: #fff;
+      color: #111827;
+      transition: all 0.3s;
+    }
+    .input-box input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    }
+
+    .input-box i {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #6b7280;
+      font-size: 1.3rem;
+      transition: color 0.3s;
+    }
+    .input-box i:hover {
+      color: #1d4ed8;
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      color: #374151;
+      flex-wrap: wrap; /* prevents overlap on small screens */
+      gap: 10px;
+    }
+    .remember-forgot a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .remember-forgot a:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1rem;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: #1d4ed8;
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    .or-separator {
+      text-align: center;
+      margin: 20px 0;
+      color: #9ca3af;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    .or-separator::before,
+    .or-separator::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: #e5e7eb;
+    }
+    .or-separator::before { left: 0; }
+    .or-separator::after { right: 0; }
+
+    .social-login {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .google-btn {
+      text-decoration: none;
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.3s;
+    }
+    .google-btn:hover {
+      background: #f3f4f6;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .google-btn img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+      color: #374151;
+      font-size: 0.95rem;
+    }
+    .register-link a {
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* 📱 Responsive Adjustments */
+    @media (max-width: 480px) {
+      .wrapper {
+        padding: 25px 20px;
+        border-radius: 15px;
+      }
+      .wrapper h1 {
+        font-size: 1.6rem;
+      }
+      .input-box input {
+        padding: 12px 40px 12px 12px;
+        font-size: 0.95rem;
+      }
+      .btn, .google-btn {
+        padding: 12px;
+        font-size: 0.95rem;
+      }
+      .remember-forgot {
+        font-size: 0.85rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <form id="loginForm" action="/login" method="post" autocomplete="off">
+      <h1>Login</h1>
+
+      <% if (typeof error !== 'undefined' && error) { %>
+        <p style="color: #ef4444; text-align: center; margin-bottom: 15px;"><%= error %></p>
+      <% } %>
+
+      <div class="input-box">
+        <input type="text" id="email" name="emailOrUsername" placeholder="Enter email or username" required>
+      </div>
+
+      <div class="input-box">
+        <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+        <i class='bx bx-hide' id="togglePassword"></i>
+      </div>
+
+      <div class="remember-forgot">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn" id="loginBtn">Login</button>
+
+      <div class="or-separator">or continue with</div>
+
+      <div class="social-login">
+        <a href="/auth/google" class="google-btn">
+          <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google logo">
+          Continue with Google
+        </a>
+      </div>
+
+      <div class="register-link">
+        <p>Don’t have an account? <a href="/signup">Sign up</a></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+    const loginBtn = document.getElementById('loginBtn');
+    const loginForm = document.getElementById('loginForm');
+
+    togglePassword.addEventListener('click', () => {
+      const type = passwordInput.type === 'password' ? 'text' : 'password';
+      passwordInput.type = type;
+      togglePassword.classList.toggle('bx-show');
+      togglePassword.classList.toggle('bx-hide');
+    });
+
+    loginForm.addEventListener('submit', () => {
+      loginBtn.textContent = 'Logging in...';
+      loginBtn.disabled = true;
+    });
+  </script>
+</body>
+</html>
